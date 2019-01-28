@@ -1,6 +1,7 @@
 package task1;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -10,14 +11,19 @@ public class Solution {
         HashMap hashMap = new HashMap<Integer, Integer>();
         for (int i = 0; i < n; i++) {
             if (hashMap.get(ar[i]) == null) {
-                hashMap.put(ar[i], 0);
+                hashMap.put(ar[i], 1);
             } else {
                 Integer num = (Integer) hashMap.get(ar[i]);
                 num++;
-                hashMap.replace(ar[i], num);
+                hashMap.remove(ar[i]);
+                hashMap.put(ar[i], num);
             }
         }
-        int sum = hashMap.values().stream().mapToInt(p -> Integer.valueOf(String.valueOf(p))).sum();
+        Integer sum = 0;
+
+        for (Object i: hashMap.values()) {
+            sum += (Integer) i/2;
+        }
         return sum;
     }
 
