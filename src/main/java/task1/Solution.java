@@ -1,7 +1,5 @@
 package task1;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -12,21 +10,21 @@ public class Solution {
         HashMap hashMap = new HashMap<Integer, Integer>();
         for (int i = 0; i < n; i++) {
             if (hashMap.get(ar[i]) == null) {
-                hashMap.put(ar[i], 1);
+                hashMap.put(ar[i], 0);
             } else {
                 Integer num = (Integer) hashMap.get(ar[i]);
                 num++;
-                //hashMap.replace(ar[i], num);
+                hashMap.replace(ar[i], num);
             }
         }
-        return 1;
+        int sum = hashMap.values().stream().mapToInt(p -> Integer.valueOf(String.valueOf(p))).sum();
+        return sum;
     }
 
-    private static final Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
+        System.out.println("Set array size and values ");
+        Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
@@ -40,12 +38,7 @@ public class Solution {
             ar[i] = arItem;
         }
 
-        int result = sockMerchant(n, ar);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
+        sockMerchant(n, ar);
 
         scanner.close();
     }
