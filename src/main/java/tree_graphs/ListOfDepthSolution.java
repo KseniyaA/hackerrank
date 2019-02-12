@@ -5,4 +5,5 @@ package tree_graphs;
  * at each depth (e.g., if you have a tree with depth D, you'll have D linked lists).
  */
 public class ListOfDepthSolution {
+
 }
